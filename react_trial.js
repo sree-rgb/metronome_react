@@ -1,4 +1,5 @@
 var current_bpm=60
+
 class Bpm extends React.Component{
 	componentDidMount() {
 		let bpm=document.getElementById('bpm')
@@ -11,7 +12,7 @@ class Bpm extends React.Component{
 		<div>
   			<label >BPM</label>
 
-			<input type="number" id='bpm' min="0" max="200"/> 
+			<input type="number" id='bpm' min="0" max="200" placeholder='60'/> 
 		</div>
 		)
 	}
@@ -19,21 +20,23 @@ class Bpm extends React.Component{
 class Time1 extends React.Component{
   constructor(props){
     super(props)
-    this.state = {second1:1,run_state:'Start'};
+    this.state = {current_step:1,run_state:'Start'};
   }
   inc(steps=4){
-      if (this.state.second1==steps){
+  	// Increments the step number.
+  	// If step number is last sets it back to step 1 
+      if (this.state.current_step==steps){
       this.setState((state,props) => ({
-      second1:state.second1=1
+      current_step:state.current_step=1
         }
       ))
 
       }
       else{
       this.setState((state,props) => ({
-      second1:state.second1+1
+      current_step:state.current_step+1
         }
-      ))}
+      ))}2
   }
   start_timer() {
     this.timerID = setInterval(
@@ -46,7 +49,7 @@ class Time1 extends React.Component{
 
     return (
     	<div>
-    	<h1>{this.state.second1}</h1>
+    	<h1>{this.state.current_step}</h1>
     	<Bpm />
     	<button id="startbutton" onClick={()=>{
     		if(this.state.run_state=='Start') {

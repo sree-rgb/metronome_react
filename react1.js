@@ -20,7 +20,8 @@ class Bpm extends React.Component {
         type: "number",
         id: "bpm",
         min: "0",
-        max: "200"
+        max: "200",
+        placeholder: "60"
       }))
     );
   }
@@ -31,21 +32,25 @@ class Time1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      second1: 1,
+      current_step: 1,
       run_state: 'Start'
     };
   }
 
   inc(steps = 4) {
-    if (this.state.second1 == steps) {
+    // Increments the step number.
+    // If step number is last sets it back to step 1 
+    if (this.state.current_step == steps) {
       this.setState((state, props) => ({
-        second1: state.second1 = 1
+        current_step: state.current_step = 1
       }));
     } else {
       this.setState((state, props) => ({
-        second1: state.second1 + 1
+        current_step: state.current_step + 1
       }));
     }
+
+    2;
   }
 
   start_timer() {
@@ -60,7 +65,7 @@ class Time1 extends React.Component {
       /*#__PURE__*/
       React.createElement("div", null,
       /*#__PURE__*/
-      React.createElement("h1", null, this.state.second1),
+      React.createElement("h1", null, this.state.current_step),
       /*#__PURE__*/
       React.createElement(Bpm, null),
       /*#__PURE__*/
