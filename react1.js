@@ -9,23 +9,29 @@ class Time1 extends React.Component {
   }
 
   alerts() {
+    const numbers = [1, 2, 3, 4];
+    const audios = numbers.map(number => {
+      return 'audio' + number;
+    });
+    const sources = numbers.map(number => {
+      if (number == 1) {
+        return 'click1.wav';
+      } else {
+        return 'click2.wav';
+      }
+    });
+    const listItems = numbers.map(number =>
+    /*#__PURE__*/
+    React.createElement("audio", {
+      id: audios[number - 1]
+    },
+    /*#__PURE__*/
+    React.createElement("source", {
+      src: sources[number - 1]
+    })));
     return (
       /*#__PURE__*/
-      React.createElement("div", null,
-      /*#__PURE__*/
-      React.createElement("audio", {
-        id: "testaudio"
-      },
-      /*#__PURE__*/
-      React.createElement("source", {
-        src: 'click' + '1' + '.wav'
-      })),
-      /*#__PURE__*/
-      React.createElement("button", {
-        onClick: () => {
-          document.getElementById('testaudio').play();
-        }
-      }, "play"))
+      React.createElement("div", null, listItems)
     );
   }
 
@@ -36,10 +42,12 @@ class Time1 extends React.Component {
       this.setState((state, props) => ({
         current_step: state.current_step = 1
       }));
+      document.getElementById('audio1').play();
     } else {
       this.setState((state, props) => ({
         current_step: state.current_step + 1
       }));
+      document.getElementById('audio' + this.state.current_step).play();
     } // To update the speed of running timer
 
 

@@ -8,16 +8,26 @@ class Time1 extends React.Component{
   }
 	
 	alerts(){
+		const numbers=[1,2,3,4]
+		const audios=numbers.map((number)=>{
+			return 'audio'+number
+		})
+		const sources=numbers.map((number)=>{
+			if (number ==1){
+			return 'click1.wav'
+			}
+			else{
+				return 'click2.wav'
+			}
+		})
+		const listItems = numbers.map((number) => 
+			<audio id={audios[number-1]}>
+				<source src={sources[number-1]}/>
+
+			</audio> );
 		return (
 			<div>
-			<audio id='testaudio'>
-				<source src={'click'+'1'+'.wav'}/>
-
-			</audio> 
-			<button onClick={()=>{
-			document.getElementById('testaudio').play()}}>
-			play
-			</button>
+				{listItems}
 			</div>
 			)
 
@@ -31,7 +41,7 @@ class Time1 extends React.Component{
 			}
 			)
 		)
-
+		document.getElementById('audio1').play()
 	  }
 	else{
 		this.setState(
@@ -39,7 +49,9 @@ class Time1 extends React.Component{
 				current_step:state.current_step+1
 				}
 				)
-		)}
+		)
+	document.getElementById('audio'+this.state.current_step).play()
+		}
 	// To update the speed of running timer
 	if (this.state.current_bpm != this.props.bpm && this.state.run_state=='Stop'){
 		startbutton=document.getElementById('startbutton')
