@@ -23,6 +23,7 @@ class Time1 extends React.Component {
     const listItems = numbers.map(number =>
     /*#__PURE__*/
     React.createElement("audio", {
+      key: number,
       id: audios[number - 1]
     },
     /*#__PURE__*/
@@ -52,12 +53,12 @@ class Time1 extends React.Component {
 
 
     if (this.state.current_bpm != this.props.bpm && this.state.run_state == 'Stop') {
-      startbutton = document.getElementById('startbutton');
       this.start_timer();
     }
   }
 
   clearTimer() {
+    alert('clear');
     clearInterval(this.timerID);
   }
 

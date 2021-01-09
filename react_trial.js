@@ -21,7 +21,7 @@ class Time1 extends React.Component{
 			}
 		})
 		const listItems = numbers.map((number) => 
-			<audio id={audios[number-1]}>
+			<audio key={number} id={audios[number-1]}>
 				<source src={sources[number-1]}/>
 
 			</audio> );
@@ -54,7 +54,6 @@ class Time1 extends React.Component{
 		}
 	// To update the speed of running timer
 	if (this.state.current_bpm != this.props.bpm && this.state.run_state=='Stop'){
-		startbutton=document.getElementById('startbutton')
 		this.start_timer()
 
 	}	
@@ -62,8 +61,6 @@ class Time1 extends React.Component{
 
 	}
   clearTimer(){
-
-
 		clearInterval(this.timerID)
 	
   }
